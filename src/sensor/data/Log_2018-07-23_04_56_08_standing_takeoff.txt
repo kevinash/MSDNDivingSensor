@@ -1,0 +1,770 @@
+nRF Connect, 2018-07-23
+SensorKit S1 5757364A (FE:65:9C:FD:F0:AC)
+V	04:56:08.606	Connecting to FE:65:9C:FD:F0:AC...
+D	04:56:08.606	gatt = device.connectGatt(autoConnect = false, TRANSPORT_LE, preferred PHY = LE 1M)
+D	04:56:09.144	[Callback] Connection state changed with status: 133 and new state: DISCONNECTED (0)
+E	04:56:09.145	Error 133 (0x85): GATT ERROR
+I	04:56:09.145	Disconnected
+D	04:56:11.400	gatt.close()
+D	04:56:11.403	wait(200)
+V	04:56:11.606	Connecting to FE:65:9C:FD:F0:AC...
+D	04:56:11.606	gatt = device.connectGatt(autoConnect = false, TRANSPORT_LE, preferred PHY = LE 1M)
+D	04:56:11.973	[Callback] Connection state changed with status: 133 and new state: DISCONNECTED (0)
+E	04:56:11.973	Error 133 (0x85): GATT ERROR
+I	04:56:11.973	Disconnected
+D	04:56:16.159	gatt.close()
+D	04:56:16.162	wait(200)
+V	04:56:16.365	Connecting to FE:65:9C:FD:F0:AC...
+D	04:56:16.365	gatt = device.connectGatt(autoConnect = false, TRANSPORT_LE, preferred PHY = LE 1M)
+D	04:56:16.612	[Broadcast] Action received: android.bluetooth.device.action.ACL_CONNECTED
+D	04:56:16.624	[Callback] Connection state changed with status: 0 and new state: CONNECTED (2)
+I	04:56:16.624	Connected to FE:65:9C:FD:F0:AC
+D	04:56:16.624	wait(1600ms)
+V	04:56:18.225	Discovering services...
+D	04:56:18.225	gatt.discoverServices()
+D	04:56:18.236	[Callback] Services discovered with status: 0
+I	04:56:18.236	Services discovered
+V	04:56:18.278	Generic Access (0x1800)
+- Device Name [R W] (0x2A00)
+- Appearance [R] (0x2A01)
+- Peripheral Preferred Connection Parameters [R] (0x2A04)
+Generic Attribute (0x1801)
+- Service Changed [I] (0x2A05)
+   Client Characteristic Configuration (0x2902)
+Nordic UART Service (6e400001-b5a3-f393-e0a9-e50e24dcca9e)
+- RX Characteristic [WNR] (6e400002-b5a3-f393-e0a9-e50e24dcca9e)
+   Characteristic User Description (0x2901)
+- TX Characteristic [N] (6e400003-b5a3-f393-e0a9-e50e24dcca9e)
+   Client Characteristic Configuration (0x2902)
+   Characteristic User Description (0x2901)
+Device Firmware Update Service (00001530-1212-efde-1523-785feabcd123)
+- DFU Packet [WNR] (00001532-1212-efde-1523-785feabcd123)
+- DFU Control Point [N W] (00001531-1212-efde-1523-785feabcd123)
+   Client Characteristic Configuration (0x2902)
+- DFU Version [R] (00001534-1212-efde-1523-785feabcd123)
+D	04:56:18.279	gatt.setCharacteristicNotification(00002a05-0000-1000-8000-00805f9b34fb, true)
+D	04:56:18.283	gatt.setCharacteristicNotification(6e400003-b5a3-f393-e0a9-e50e24dcca9e, true)
+D	04:56:18.285	gatt.setCharacteristicNotification(00001531-1212-efde-1523-785feabcd123, true)
+V	04:56:24.293	Disabling notifications for 6e400003-b5a3-f393-e0a9-e50e24dcca9e
+D	04:56:24.293	gatt.setCharacteristicNotification(6e400003-b5a3-f393-e0a9-e50e24dcca9e, false)
+D	04:56:24.295	gatt.writeDescriptor(00002902-0000-1000-8000-00805f9b34fb, value=0x0000)
+I	04:56:24.402	Data written to descr. 00002902-0000-1000-8000-00805f9b34fb, value: (0x) 00-00
+A	04:56:24.403	"Notifications and indications disabled" sent
+V	04:56:24.406	Notifications and indications disabled for 6e400003-b5a3-f393-e0a9-e50e24dcca9e
+V	04:56:25.160	Enabling notifications for 6e400003-b5a3-f393-e0a9-e50e24dcca9e
+D	04:56:25.160	gatt.setCharacteristicNotification(6e400003-b5a3-f393-e0a9-e50e24dcca9e, true)
+D	04:56:25.161	gatt.writeDescriptor(00002902-0000-1000-8000-00805f9b34fb, value=0x0100)
+I	04:56:25.231	Data written to descr. 00002902-0000-1000-8000-00805f9b34fb, value: (0x) 01-00
+A	04:56:25.231	"Notifications enabled" sent
+V	04:56:25.236	Notifications enabled for 6e400003-b5a3-f393-e0a9-e50e24dcca9e
+I	04:56:25.279	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-34-34-39-30-2C-31-33-33-30-2C-2D-31-30-35-30-2C-2D-31, "204490,1330,-1050,-1"
+A	04:56:25.279	"204490,1330,-1050,-1" received
+I	04:56:25.280	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-37-30-2C-31-32-34-2C-2D-38-32-2C-2D-39-36-30-2C-30-0D-0A
+A	04:56:25.280	"470,124,-82,-960,0
+" received
+I	04:56:25.380	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-34-36-31-37-2C-31-34-30-30-2C-2D-38-34-30-2C-2D-31-35, "204617,1400,-840,-15"
+A	04:56:25.380	"204617,1400,-840,-15" received
+I	04:56:25.382	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-30-2C-31-32-37-2C-2D-37-38-2C-2D-39-35-38-2C-30-0D-0A
+A	04:56:25.382	"40,127,-78,-958,0
+" received
+I	04:56:25.523	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-34-37-34-34-2C-31-33-33-30-2C-2D-37-37-30-2C-2D-31-35, "204744,1330,-770,-15"
+A	04:56:25.523	"204744,1330,-770,-15" received
+I	04:56:25.524	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-30-2C-31-33-31-2C-2D-37-34-2C-2D-39-35-35-2C-30-0D-0A
+A	04:56:25.524	"40,131,-74,-955,0
+" received
+I	04:56:25.622	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-34-38-37-31-2C-37-30-2C-32-31-30-2C-2D-31-39-36-30-2C, "204871,70,210,-1960,"
+A	04:56:25.622	"204871,70,210,-1960," received
+I	04:56:25.622	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-32-39-2C-2D-37-37-2C-2D-39-36-32-2C-30-0D-0A
+A	04:56:25.622	"129,-77,-962,0
+" received
+I	04:56:25.770	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-34-39-39-38-2C-2D-37-37-30-2C-32-38-30-2C-2D-32-30-33, "204998,-770,280,-203"
+A	04:56:25.770	"204998,-770,280,-203" received
+I	04:56:25.771	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-32-32-2C-2D-39-39-2C-2D-39-38-30-2C-30-0D-0A
+A	04:56:25.771	"0,122,-99,-980,0
+" received
+I	04:56:25.914	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-31-32-35-2C-31-36-31-30-2C-2D-37-37-30-2C-2D-31-35, "205125,1610,-770,-15"
+A	04:56:25.914	"205125,1610,-770,-15" received
+I	04:56:25.914	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-30-2C-31-33-34-2C-2D-38-37-2C-2D-39-36-39-2C-30-0D-0A
+A	04:56:25.914	"40,134,-87,-969,0
+" received
+I	04:56:26.019	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-32-35-32-2C-31-38-39-30-2C-2D-37-30-2C-2D-31-35-34, "205252,1890,-70,-154"
+A	04:56:26.019	"205252,1890,-70,-154" received
+I	04:56:26.024	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-33-35-2C-2D-35-38-2C-2D-39-34-33-2C-30-0D-0A
+A	04:56:26.024	"0,135,-58,-943,0
+" received
+I	04:56:26.157	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-33-37-39-2C-31-31-39-30-2C-2D-37-30-2C-2D-31-36-38, "205379,1190,-70,-168"
+A	04:56:26.157	"205379,1190,-70,-168" received
+I	04:56:26.158	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-31-30-2C-2D-37-36-2C-2D-39-36-36-2C-30-0D-0A
+A	04:56:26.158	"0,110,-76,-966,0
+" received
+I	04:56:26.265	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-35-30-36-2C-36-33-30-2C-2D-38-34-30-2C-2D-31-36-38, "205506,630,-840,-168"
+A	04:56:26.265	"205506,630,-840,-168" received
+I	04:56:26.265	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-33-38-2C-2D-38-31-2C-2D-39-35-38-2C-30-0D-0A
+A	04:56:26.265	"0,138,-81,-958,0
+" received
+I	04:56:26.402	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-36-33-33-2C-31-31-39-30-2C-2D-37-30-2C-2D-31-38-32, "205633,1190,-70,-182"
+A	04:56:26.402	"205633,1190,-70,-182" received
+I	04:56:26.402	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-32-32-2C-2D-39-35-2C-2D-39-37-31-2C-30-0D-0A
+A	04:56:26.402	"0,122,-95,-971,0
+" received
+I	04:56:26.548	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-37-36-30-2C-32-31-37-30-2C-2D-31-34-30-30-2C-2D-31, "205760,2170,-1400,-1"
+A	04:56:26.548	"205760,2170,-1400,-1" received
+I	04:56:26.551	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-33-30-2C-31-33-33-2C-2D-37-32-2C-2D-39-35-36-2C-30-0D-0A
+A	04:56:26.551	"330,133,-72,-956,0
+" received
+I	04:56:26.648	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-35-38-38-37-2C-34-39-30-2C-32-38-30-2C-2D-31-38-39-30, "205887,490,280,-1890"
+A	04:56:26.648	"205887,490,280,-1890" received
+I	04:56:26.649	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-32-31-2C-2D-37-34-2C-2D-39-36-32-2C-30-0D-0A
+A	04:56:26.649	",121,-74,-962,0
+" received
+I	04:56:26.792	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-30-31-34-2C-2D-31-34-30-2C-34-32-30-2C-2D-32-30-33, "206014,-140,420,-203"
+A	04:56:26.792	"206014,-140,420,-203" received
+I	04:56:26.793	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-31-35-2C-2D-39-36-2C-2D-39-37-37-2C-30-0D-0A
+A	04:56:26.793	"0,115,-96,-977,0
+" received
+I	04:56:26.890	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-31-34-31-2C-31-39-36-30-2C-2D-39-38-30-2C-2D-31-34, "206141,1960,-980,-14"
+A	04:56:26.890	"206141,1960,-980,-14" received
+I	04:56:26.892	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-30-2C-31-32-39-2C-2D-37-33-2C-2D-39-35-35-2C-30-0D-0A
+A	04:56:26.892	"00,129,-73,-955,0
+" received
+I	04:56:27.035	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-32-36-38-2C-37-37-30-2C-31-34-30-2C-2D-31-38-32-30, "206268,770,140,-1820"
+A	04:56:27.035	"206268,770,140,-1820" received
+I	04:56:27.037	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-32-39-2C-2D-37-33-2C-2D-39-35-32-2C-30-0D-0A
+A	04:56:27.037	",129,-73,-952,0
+" received
+I	04:56:27.186	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-33-39-35-2C-31-35-34-30-2C-2D-33-35-30-2C-2D-31-36, "206395,1540,-350,-16"
+A	04:56:27.186	"206395,1540,-350,-16" received
+I	04:56:27.191	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-30-2C-31-31-35-2C-2D-36-39-2C-2D-39-36-32-2C-30-0D-0A
+A	04:56:27.191	"10,115,-69,-962,0
+" received
+I	04:56:27.280	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-35-32-32-2C-32-38-30-2C-2D-34-32-30-2C-2D-31-38-32, "206522,280,-420,-182"
+A	04:56:27.280	"206522,280,-420,-182" received
+I	04:56:27.287	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-34-34-2C-2D-37-38-2C-2D-39-35-37-2C-30-0D-0A
+A	04:56:27.287	"0,144,-78,-957,0
+" received
+I	04:56:27.427	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-36-34-39-2C-32-31-30-2C-2D-37-30-30-2C-2D-31-36-38, "206649,210,-700,-168"
+A	04:56:27.427	"206649,210,-700,-168" received
+I	04:56:27.427	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-32-30-2C-2D-31-30-36-2C-2D-39-38-30-2C-30-0D-0A
+A	04:56:27.427	"0,120,-106,-980,0
+" received
+I	04:56:27.525	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-37-37-36-2C-31-34-30-30-2C-2D-31-30-35-30-2C-2D-31, "206776,1400,-1050,-1"
+A	04:56:27.525	"206776,1400,-1050,-1" received
+I	04:56:27.526	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-34-30-2C-31-33-39-2C-2D-38-31-2C-2D-39-35-38-2C-30-0D-0A
+A	04:56:27.526	"540,139,-81,-958,0
+" received
+I	04:56:27.668	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-36-39-30-33-2C-31-36-31-30-2C-2D-31-34-30-2C-2D-31-35, "206903,1610,-140,-15"
+A	04:56:27.668	"206903,1610,-140,-15" received
+I	04:56:27.669	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-30-2C-31-31-35-2C-2D-36-30-2C-2D-39-35-36-2C-30-0D-0A
+A	04:56:27.669	"40,115,-60,-956,0
+" received
+I	04:56:27.816	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-30-33-30-2C-31-34-30-2C-2D-32-31-30-2C-2D-31-38-32, "207030,140,-210,-182"
+A	04:56:27.816	"207030,140,-210,-182" received
+I	04:56:27.818	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-32-34-2C-2D-39-32-2C-2D-39-36-37-2C-30-0D-0A
+A	04:56:27.818	"0,124,-92,-967,0
+" received
+I	04:56:27.913	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-31-35-37-2C-31-35-34-30-2C-2D-31-31-39-30-2C-2D-31, "207157,1540,-1190,-1"
+A	04:56:27.914	"207157,1540,-1190,-1" received
+I	04:56:27.914	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-37-30-2C-31-33-38-2C-2D-37-35-2C-2D-39-35-37-2C-30-0D-0A
+A	04:56:27.914	"470,138,-75,-957,0
+" received
+I	04:56:28.059	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-32-38-34-2C-33-35-30-2C-33-35-30-2C-2D-31-39-36-30, "207284,350,350,-1960"
+A	04:56:28.059	"207284,350,350,-1960" received
+I	04:56:28.060	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-32-35-2C-2D-37-35-2C-2D-39-35-39-2C-30-0D-0A
+A	04:56:28.060	",125,-75,-959,0
+" received
+I	04:56:28.158	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-34-31-31-2C-31-34-30-2C-37-30-2C-2D-31-38-39-30-2C, "207411,140,70,-1890,"
+A	04:56:28.158	"207411,140,70,-1890," received
+I	04:56:28.159	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-32-36-2C-2D-39-33-2C-2D-39-36-38-2C-30-0D-0A
+A	04:56:28.159	"126,-93,-968,0
+" received
+I	04:56:28.307	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-35-33-38-2C-31-34-37-30-2C-2D-36-33-30-2C-2D-31-36, "207538,1470,-630,-16"
+A	04:56:28.307	"207538,1470,-630,-16" received
+I	04:56:28.307	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-30-2C-31-32-35-2C-2D-38-30-2C-2D-39-36-32-2C-30-0D-0A
+A	04:56:28.307	"10,125,-80,-962,0
+" received
+I	04:56:28.453	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-36-36-35-2C-32-31-30-2C-2D-31-34-30-2C-2D-31-38-32, "207665,210,-140,-182"
+A	04:56:28.453	"207665,210,-140,-182" received
+I	04:56:28.453	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-32-32-2C-2D-38-35-2C-2D-39-36-34-2C-30-0D-0A
+A	04:56:28.453	"0,122,-85,-964,0
+" received
+I	04:56:28.549	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-37-39-32-2C-2D-35-36-30-2C-31-34-30-2C-2D-32-30-33, "207792,-560,140,-203"
+A	04:56:28.549	"207792,-560,140,-203" received
+I	04:56:28.552	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-31-39-2C-2D-31-30-31-2C-2D-39-37-36-2C-30-0D-0A
+A	04:56:28.552	"0,119,-101,-976,0
+" received
+I	04:56:28.694	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-37-39-31-39-2C-32-39-34-30-2C-2D-31-33-33-30-2C-2D-31, "207919,2940,-1330,-1"
+A	04:56:28.694	"207919,2940,-1330,-1" received
+I	04:56:28.695	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-32-30-2C-31-34-36-2C-2D-36-30-2C-2D-39-34-33-2C-30-0D-0A
+A	04:56:28.695	"120,146,-60,-943,0
+" received
+I	04:56:28.791	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-30-34-36-2C-32-31-30-2C-2D-34-39-30-2C-2D-31-38-32, "208046,210,-490,-182"
+A	04:56:28.791	"208046,210,-490,-182" received
+I	04:56:28.792	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-38-39-2C-2D-37-32-2C-2D-39-37-36-2C-30-0D-0A
+A	04:56:28.792	"0,89,-72,-976,0
+" received
+I	04:56:28.937	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-31-37-33-2C-31-30-35-30-2C-2D-31-32-36-30-2C-2D-31, "208173,1050,-1260,-1"
+A	04:56:28.937	"208173,1050,-1260,-1" received
+I	04:56:28.938	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-34-30-2C-31-34-38-2C-2D-38-38-2C-2D-39-35-35-2C-30-0D-0A
+A	04:56:28.938	"540,148,-88,-955,0
+" received
+I	04:56:29.083	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-33-30-30-2C-31-34-37-30-2C-31-34-30-2C-2D-31-36-38, "208300,1470,140,-168"
+A	04:56:29.083	"208300,1470,140,-168" received
+I	04:56:29.083	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-31-33-32-2C-2D-36-37-2C-2D-39-35-35-2C-30-0D-0A
+A	04:56:29.083	"0,132,-67,-955,0
+" received
+I	04:56:29.184	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-34-32-37-2C-32-38-30-2C-31-34-30-2C-2D-31-39-36-30, "208427,280,140,-1960"
+A	04:56:29.184	"208427,280,140,-1960" received
+I	04:56:29.185	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-31-33-2C-2D-39-37-2C-2D-39-37-34-2C-30-0D-0A
+A	04:56:29.185	",113,-97,-974,0
+" received
+I	04:56:29.326	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-35-35-34-2C-2D-32-39-34-30-2C-2D-31-34-30-2C-2D-32, "208554,-2940,-140,-2"
+A	04:56:29.326	"208554,-2940,-140,-2" received
+I	04:56:29.327	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-37-30-2C-31-34-30-2C-2D-39-37-2C-2D-39-34-37-2C-30-0D-0A
+A	04:56:29.327	"170,140,-97,-947,0
+" received
+I	04:56:29.476	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-36-38-31-2C-2D-38-31-32-30-2C-33-39-32-30-2C-2D-33, "208681,-8120,3920,-3"
+A	04:56:29.476	"208681,-8120,3920,-3" received
+I	04:56:29.477	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-31-30-2C-31-31-34-2C-2D-36-31-2C-2D-39-33-34-2C-30-0D-0A
+A	04:56:29.477	"010,114,-61,-934,0
+" received
+I	04:56:29.573	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-38-30-38-2C-2D-31-35-31-32-30-2C-34-39-30-30-2C-2D, "208808,-15120,4900,-"
+A	04:56:29.573	"208808,-15120,4900,-" received
+I	04:56:29.573	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-36-34-30-2C-31-38-33-2C-2D-34-35-2C-2D-39-37-38-2C-30-0D
+A	04:56:29.573	"3640,183,-45,-978,0" received
+I	04:56:29.576	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:29.576	"
+" received
+I	04:56:29.718	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-38-39-33-35-2C-2D-33-35-32-38-30-2C-31-33-34-34-30-2C, "208935,-35280,13440,"
+A	04:56:29.718	"208935,-35280,13440," received
+I	04:56:29.718	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-36-36-35-30-2C-31-35-37-2C-34-30-2C-2D-38-38-30-2C-30-0D
+A	04:56:29.718	"-6650,157,40,-880,0" received
+I	04:56:29.720	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:29.720	"
+" received
+I	04:56:29.814	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-30-36-32-2C-2D-35-34-37-34-30-2C-31-38-32-30-30-2C, "209062,-54740,18200,"
+A	04:56:29.814	"209062,-54740,18200," received
+I	04:56:29.816	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-39-30-33-30-2C-32-33-31-2C-31-33-31-2C-2D-39-37-33-2C-30, "-9030,231,131,-973,0"
+A	04:56:29.816	"-9030,231,131,-973,0" received
+I	04:56:29.816	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:29.816	"
+" received
+I	04:56:29.962	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-31-38-39-2C-2D-33-35-32-38-30-2C-31-33-32-33-30-2C, "209189,-35280,13230,"
+A	04:56:29.962	"209189,-35280,13230," received
+I	04:56:29.962	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-36-34-34-30-2C-32-36-38-2C-32-32-35-2C-2D-39-31-36-2C-30, "-6440,268,225,-916,0"
+A	04:56:29.962	"-6440,268,225,-916,0" received
+I	04:56:29.963	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:29.963	"
+" received
+I	04:56:30.059	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-33-31-36-2C-2D-31-31-35-35-30-2C-35-32-35-30-2C-2D, "209316,-11550,5250,-"
+A	04:56:30.059	"209316,-11550,5250,-" received
+I	04:56:30.059	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-35-30-30-2C-32-33-38-2C-32-34-33-2C-2D-39-37-33-2C-30-0D
+A	04:56:30.059	"3500,238,243,-973,0" received
+I	04:56:30.060	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:30.060	"
+" received
+I	04:56:30.254	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-34-34-33-2C-31-30-32-32-30-2C-2D-32-38-37-30-2C-2D, "209443,10220,-2870,-"
+A	04:56:30.254	"209443,10220,-2870,-" received
+I	04:56:30.255	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-35-30-2C-32-35-33-2C-32-37-33-2C-2D-39-37-36-2C-30-0D-0A
+A	04:56:30.255	"350,253,273,-976,0
+" received
+I	04:56:30.351	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-35-37-30-2C-37-33-38-35-30-2C-2D-32-30-32-33-30-2C, "209570,73850,-20230,"
+A	04:56:30.351	"209570,73850,-20230," received
+I	04:56:30.351	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-30-32-39-30-2C-32-38-39-2C-31-33-30-2C-2D-31-39-35-34-2C, "10290,289,130,-1954,"
+A	04:56:30.351	"10290,289,130,-1954," received
+I	04:56:30.356	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:30.356	"0
+" received
+I	04:56:30.450	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-36-39-37-2C-39-31-30-37-30-2C-2D-37-35-36-30-30-2C, "209697,91070,-75600,"
+A	04:56:30.450	"209697,91070,-75600," received
+I	04:56:30.501	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 38-36-31-30-2C-2D-35-39-2C-34-39-33-2C-31-39-39-38-2C-30-0D
+A	04:56:30.501	"8610,-59,493,1998,0" received
+I	04:56:30.502	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:30.502	"
+" received
+I	04:56:30.596	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-38-32-34-2C-2D-35-30-34-37-30-2C-2D-31-38-37-36-30, "209824,-50470,-18760"
+A	04:56:30.596	"209824,-50470,-18760" received
+I	04:56:30.596	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-37-30-37-30-2C-35-36-35-2C-2D-33-34-36-2C-2D-31-39-39-37, ",7070,565,-346,-1997"
+A	04:56:30.596	",7070,565,-346,-1997" received
+I	04:56:30.597	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:30.597	",0
+" received
+I	04:56:30.694	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-30-39-39-35-31-2C-2D-31-30-31-37-38-30-2C-34-30-32-35-30, "209951,-101780,40250"
+A	04:56:30.694	"209951,-101780,40250" received
+I	04:56:30.694	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-31-33-32-33-30-2C-37-30-2C-36-30-35-2C-31-39-39-38-2C, ",-13230,70,605,1998,"
+A	04:56:30.694	",-13230,70,605,1998," received
+I	04:56:30.694	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:30.694	"0
+" received
+I	04:56:30.840	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-30-37-38-2C-31-36-37-33-30-30-2C-2D-36-37-31-33-30, "210078,167300,-67130"
+A	04:56:30.840	"210078,167300,-67130" received
+I	04:56:30.840	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-32-34-32-39-30-2C-35-31-31-2C-33-36-2C-2D-31-39-39-37-2C, ",24290,511,36,-1997,"
+A	04:56:30.840	",24290,511,36,-1997," received
+I	04:56:30.840	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:30.840	"0
+" received
+I	04:56:30.985	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-32-30-35-2C-2D-32-33-37-33-37-30-2C-31-30-35-38-34, "210205,-237370,10584"
+A	04:56:30.985	"210205,-237370,10584" received
+I	04:56:30.985	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-2D-32-37-31-36-30-2C-32-35-35-2C-35-38-33-2C-33-30-31, "0,-27160,255,583,301"
+A	04:56:30.985	"0,-27160,255,583,301" received
+I	04:56:30.986	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:30.986	",0
+" received
+I	04:56:31.085	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-33-33-32-2C-32-38-37-34-32-30-2C-2D-31-32-32-35-30, "210332,287420,-12250"
+A	04:56:31.085	"210332,287420,-12250" received
+I	04:56:31.085	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-34-35-33-36-30-2C-33-37-35-2C-34-36-33-2C-2D-31-33-38, "0,45360,375,463,-138"
+A	04:56:31.085	"0,45360,375,463,-138" received
+I	04:56:31.086	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-2C-30-0D-0A
+A	04:56:31.086	"4,0
+" received
+I	04:56:31.278	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-34-35-39-2C-2D-32-36-31-31-37-30-2C-31-32-36-36-33, "210459,-261170,12663"
+A	04:56:31.278	"210459,-261170,12663" received
+I	04:56:31.280	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-2D-33-31-30-38-30-2C-33-38-30-2C-33-38-31-2C-2D-31-37, "0,-31080,380,381,-17"
+A	04:56:31.280	"0,-31080,380,381,-17" received
+I	04:56:31.280	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-34-2C-30-0D-0A
+A	04:56:31.280	"94,0
+" received
+I	04:56:31.327	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-35-38-36-2C-32-37-30-33-34-30-2C-2D-31-32-35-35-31, "210586,270340,-12551"
+A	04:56:31.327	"210586,270340,-12551" received
+I	04:56:31.327	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-33-39-30-36-30-2C-32-30-33-2C-35-35-39-2C-35-35-35-2C, "0,39060,203,559,555,"
+A	04:56:31.327	"0,39060,203,559,555," received
+I	04:56:31.329	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:31.329	"0
+" received
+I	04:56:31.473	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-37-31-33-2C-2D-32-34-33-33-32-30-2C-31-31-36-36-39, "210713,-243320,11669"
+A	04:56:31.473	"210713,-243320,11669" received
+I	04:56:31.475	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-2D-34-30-31-38-30-2C-33-39-30-2C-2D-36-32-2C-2D-31-39, "0,-40180,390,-62,-19"
+A	04:56:31.475	"0,-40180,390,-62,-19" received
+I	04:56:31.477	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-37-2C-30-0D-0A
+A	04:56:31.477	"97,0
+" received
+I	04:56:31.618	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-38-34-30-2C-31-39-34-37-34-30-2C-2D-39-38-33-35-30, "210840,194740,-98350"
+A	04:56:31.618	"210840,194740,-98350" received
+I	04:56:31.620	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-32-34-33-36-30-2C-33-39-2C-34-30-37-2C-31-37-37-31-2C-30, ",24360,39,407,1771,0"
+A	04:56:31.620	",24360,39,407,1771,0" received
+I	04:56:31.620	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:31.620	"
+" received
+I	04:56:31.716	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-30-39-36-37-2C-2D-31-31-34-38-30-30-2C-35-32-37-38-30, "210967,-114800,52780"
+A	04:56:31.716	"210967,-114800,52780" received
+I	04:56:31.716	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-32-31-37-37-30-2C-33-39-34-2C-2D-33-38-31-2C-2D-31-39, ",-21770,394,-381,-19"
+A	04:56:31.716	",-21770,394,-381,-19" received
+I	04:56:31.718	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-37-2C-30-0D-0A
+A	04:56:31.718	"97,0
+" received
+I	04:56:31.864	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-30-39-34-2C-34-38-35-38-30-2C-2D-32-39-35-34-30-2C, "211094,48580,-29540,"
+A	04:56:31.864	"211094,48580,-29540," received
+I	04:56:31.864	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-38-30-30-2C-2D-33-34-2C-33-33-34-2C-31-39-30-37-2C-30-0D
+A	04:56:31.864	"2800,-34,334,1907,0" received
+I	04:56:31.864	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:31.864	"
+" received
+I	04:56:32.060	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 53-58-2D-31-39-35-36-37-37-0D-0A
+A	04:56:32.060	"SX-195677
+" received
+I	04:56:32.063	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-32-32-31-2C-36-39-30-39-30-2C-2D-33-35-35-36-30-2C, "211221,69090,-35560,"
+A	04:56:32.063	"211221,69090,-35560," received
+I	04:56:32.064	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-30-34-30-2C-34-30-32-2C-2D-32-38-36-2C-2D-31-39-39-37-2C, "5040,402,-286,-1997,"
+A	04:56:32.064	"5040,402,-286,-1997," received
+I	04:56:32.065	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:32.065	"0
+" received
+I	04:56:32.204	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-34-34-37-2C-2D-33-34-37-32-30-2C-31-38-36-32-30-2C, "211447,-34720,18620,"
+A	04:56:32.204	"211447,-34720,18620," received
+I	04:56:32.205	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-39-33-31-30-2C-33-35-31-2C-2D-33-33-37-2C-2D-31-39-39-37, "-9310,351,-337,-1997"
+A	04:56:32.205	"-9310,351,-337,-1997" received
+I	04:56:32.206	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:32.206	",0
+" received
+I	04:56:32.352	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-35-37-34-2C-2D-36-38-32-35-30-2C-32-36-36-30-30-2C, "211574,-68250,26600,"
+A	04:56:32.352	"211574,-68250,26600," received
+I	04:56:32.354	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-30-35-30-30-2C-32-34-2C-32-38-33-2C-31-31-38-35-2C-30, "-10500,24,283,1185,0"
+A	04:56:32.354	"-10500,24,283,1185,0" received
+I	04:56:32.355	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:32.355	"
+" received
+I	04:56:32.447	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-37-30-31-2C-31-31-30-36-37-30-2C-2D-34-34-35-32-30, "211701,110670,-44520"
+A	04:56:32.447	"211701,110670,-44520" received
+I	04:56:32.447	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-34-39-38-30-2C-33-33-39-2C-2D-31-31-34-2C-2D-31-39-39, ",14980,339,-114,-199"
+A	04:56:32.447	",14980,339,-114,-199" received
+I	04:56:32.448	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 37-2C-30-0D-0A
+A	04:56:32.448	"7,0
+" received
+I	04:56:32.598	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-38-32-38-2C-2D-31-33-33-31-34-30-2C-35-34-39-35-30, "211828,-133140,54950"
+A	04:56:32.598	"211828,-133140,54950" received
+I	04:56:32.598	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-31-38-36-32-30-2C-31-35-31-2C-32-36-38-2C-2D-33-39-2C, ",-18620,151,268,-39,"
+A	04:56:32.598	",-18620,151,268,-39," received
+I	04:56:32.599	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:32.599	"0
+" received
+I	04:56:32.692	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-31-39-35-35-2C-31-38-35-37-38-30-2C-2D-38-30-32-32-30, "211955,185780,-80220"
+A	04:56:32.692	"211955,185780,-80220" received
+I	04:56:32.693	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-32-36-37-34-30-2C-32-36-30-2C-31-31-36-2C-2D-31-32-39-36, ",26740,260,116,-1296"
+A	04:56:32.693	",26740,260,116,-1296" received
+I	04:56:32.694	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:32.694	",0
+" received
+I	04:56:32.836	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-30-38-32-2C-2D-31-38-32-32-31-30-2C-38-30-35-30-30, "212082,-182210,80500"
+A	04:56:32.836	"212082,-182210,80500" received
+I	04:56:32.839	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-32-35-35-35-30-2C-32-36-35-2C-37-36-2C-2D-31-34-33-39, ",-25550,265,76,-1439"
+A	04:56:32.839	",-25550,265,76,-1439" received
+I	04:56:32.839	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:32.839	",0
+" received
+I	04:56:32.983	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-32-30-39-2C-31-38-38-31-36-30-2C-2D-38-31-31-33-30, "212209,188160,-81130"
+A	04:56:32.983	"212209,188160,-81130" received
+I	04:56:32.984	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-32-36-34-36-30-2C-31-32-39-2C-32-33-39-2C-30-2C-30-0D-0A
+A	04:56:32.984	",26460,129,239,0,0
+" received
+I	04:56:33.081	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-33-33-36-2C-2D-31-35-34-32-31-30-2C-37-32-36-36-30, "212336,-154210,72660"
+A	04:56:33.081	"212336,-154210,72660" received
+I	04:56:33.081	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-32-35-32-37-30-2C-32-37-30-2C-2D-31-32-30-2C-2D-31-39, ",-25270,270,-120,-19"
+A	04:56:33.081	",-25270,270,-120,-19" received
+I	04:56:33.081	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-37-2C-30-0D-0A
+A	04:56:33.081	"97,0
+" received
+I	04:56:33.227	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-34-36-33-2C-31-32-36-30-30-30-2C-2D-36-30-39-37-30, "212463,126000,-60970"
+A	04:56:33.227	"212463,126000,-60970" received
+I	04:56:33.227	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-35-34-30-30-2C-35-31-2C-32-31-37-2C-38-37-33-2C-30-0D
+A	04:56:33.227	",15400,51,217,873,0" received
+I	04:56:33.228	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:33.228	"
+" received
+I	04:56:33.324	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-35-39-30-2C-2D-36-34-33-33-30-2C-33-31-34-33-30-2C, "212590,-64330,31430,"
+A	04:56:33.324	"212590,-64330,31430," received
+I	04:56:33.325	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-32-38-31-30-2C-32-37-39-2C-2D-33-30-31-2C-2D-31-39-39, "-12810,279,-301,-199"
+A	04:56:33.325	"-12810,279,-301,-199" received
+I	04:56:33.325	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 37-2C-30-0D-0A
+A	04:56:33.325	"7,0
+" received
+I	04:56:33.472	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-37-31-37-2C-32-34-38-35-30-2C-2D-31-39-31-38-30-2C, "212717,24850,-19180,"
+A	04:56:33.472	"212717,24850,-19180," received
+I	04:56:33.473	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-30-2C-33-36-2C-31-37-38-2C-39-38-36-2C-30-0D-0A
+A	04:56:33.473	"2170,36,178,986,0
+" received
+I	04:56:33.617	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-38-34-34-2C-38-35-34-30-2C-2D-37-30-2C-2D-31-31-32, "212844,8540,-70,-112"
+A	04:56:33.617	"212844,8540,-70,-112" received
+I	04:56:33.618	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-32-37-35-2C-2D-32-34-37-2C-2D-31-39-39-37-2C-30-0D-0A
+A	04:56:33.618	"0,275,-247,-1997,0
+" received
+I	04:56:33.716	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-32-39-37-31-2C-2D-37-34-34-38-30-2C-32-39-36-38-30-2C, "212971,-74480,29680,"
+A	04:56:33.716	"212971,-74480,29680," received
+I	04:56:33.717	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-31-34-38-30-2C-36-32-2C-31-36-37-2C-33-37-39-2C-30-0D
+A	04:56:33.717	"-11480,62,167,379,0" received
+I	04:56:33.718	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:33.718	"
+" received
+I	04:56:33.862	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-30-39-38-2C-31-30-32-35-35-30-2C-2D-34-31-36-35-30, "213098,102550,-41650"
+A	04:56:33.862	"213098,102550,-41650" received
+I	04:56:33.863	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-33-33-30-30-2C-32-34-38-2C-2D-38-36-2C-2D-31-38-39-32, ",13300,248,-86,-1892"
+A	04:56:33.863	",13300,248,-86,-1892" received
+I	04:56:33.863	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:33.863	",0
+" received
+I	04:56:33.958	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-32-32-35-2C-2D-31-31-35-39-32-30-2C-34-38-30-32-30, "213225,-115920,48020"
+A	04:56:33.958	"213225,-115920,48020" received
+I	04:56:33.959	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-31-37-31-35-30-2C-31-35-31-2C-37-37-2C-2D-36-32-32-2C, ",-17150,151,77,-622,"
+A	04:56:33.959	",-17150,151,77,-622," received
+I	04:56:33.959	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:33.959	"0
+" received
+I	04:56:34.105	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-33-35-32-2C-31-34-33-37-38-30-2C-2D-36-30-30-36-30, "213352,143780,-60060"
+A	04:56:34.105	"213352,143780,-60060" received
+I	04:56:34.105	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-39-33-32-30-2C-31-35-34-2C-38-30-2C-2D-38-36-35-2C-30, ",19320,154,80,-865,0"
+A	04:56:34.105	",19320,154,80,-865,0" received
+I	04:56:34.105	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:34.105	"
+" received
+I	04:56:34.250	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-34-37-39-2C-2D-31-33-36-31-35-30-2C-36-30-35-35-30, "213479,-136150,60550"
+A	04:56:34.250	"213479,-136150,60550" received
+I	04:56:34.250	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-2D-32-31-30-30-30-2C-32-31-37-2C-2D-33-37-2C-2D-31-36-32, ",-21000,217,-37,-162"
+A	04:56:34.250	",-21000,217,-37,-162" received
+I	04:56:34.251	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-2C-30-0D-0A
+A	04:56:34.251	"3,0
+" received
+I	04:56:34.349	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-36-30-36-2C-31-32-39-30-38-30-2C-2D-35-39-32-39-30, "213606,129080,-59290"
+A	04:56:34.349	"213606,129080,-59290" received
+I	04:56:34.350	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-37-35-37-30-2C-36-30-2C-31-31-31-2C-32-30-2C-30-0D-0A
+A	04:56:34.350	",17570,60,111,20,0
+" received
+I	04:56:34.496	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-37-33-33-2C-2D-39-38-33-35-30-2C-34-31-35-31-30-2C, "213733,-98350,41510,"
+A	04:56:34.496	"213733,-98350,41510," received
+I	04:56:34.496	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-36-30-33-30-2C-32-37-36-2C-2D-32-30-39-2C-2D-31-39-39, "-16030,276,-209,-199"
+A	04:56:34.496	"-16030,276,-209,-199" received
+I	04:56:34.496	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 37-2C-30-0D-0A
+A	04:56:34.496	"7,0
+" received
+I	04:56:34.593	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-38-36-30-2C-37-34-32-37-30-2C-2D-33-31-31-35-30-2C, "213860,74270,-31150,"
+A	04:56:34.593	"213860,74270,-31150," received
+I	04:56:34.593	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 37-38-34-30-2C-32-37-2C-31-32-39-2C-35-30-31-2C-30-0D-0A
+A	04:56:34.593	"7840,27,129,501,0
+" received
+I	04:56:34.838	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 53-58-2D-31-39-35-36-37-37-0D-0A
+A	04:56:34.838	"SX-195677
+" received
+I	04:56:34.842	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-33-39-38-37-2C-37-39-32-34-30-2C-2D-33-37-38-37-30-2C, "213987,79240,-37870,"
+A	04:56:34.842	"213987,79240,-37870," received
+I	04:56:34.843	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-38-37-30-2C-32-33-30-2C-2D-32-34-39-2C-2D-31-39-39-37-2C, "9870,230,-249,-1997,"
+A	04:56:34.843	"9870,230,-249,-1997," received
+I	04:56:34.844	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:34.844	"0
+" received
+I	04:56:34.983	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-32-31-33-2C-2D-35-37-31-32-30-2C-32-38-30-37-30-2C, "214213,-57120,28070,"
+A	04:56:34.983	"214213,-57120,28070," received
+I	04:56:34.983	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-31-34-38-30-2C-32-34-35-2C-2D-32-34-32-2C-2D-31-39-39, "-11480,245,-242,-199"
+A	04:56:34.983	"-11480,245,-242,-199" received
+I	04:56:34.984	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 37-2C-30-0D-0A
+A	04:56:34.984	"7,0
+" received
+I	04:56:35.080	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-33-34-30-2C-31-31-39-30-2C-2D-37-30-30-2C-2D-31-39, "214340,1190,-700,-19"
+A	04:56:35.080	"214340,1190,-700,-19" received
+I	04:56:35.080	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 36-30-2C-39-2C-39-34-2C-33-35-37-2C-30-0D-0A
+A	04:56:35.080	"60,9,94,357,0
+" received
+I	04:56:35.229	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-34-36-37-2C-32-34-39-39-30-2C-2D-39-35-32-30-2C-31, "214467,24990,-9520,1"
+A	04:56:35.229	"214467,24990,-9520,1" received
+I	04:56:35.229	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 38-32-30-2C-32-36-33-2C-2D-31-39-33-2C-2D-31-39-39-37-2C-30, "820,263,-193,-1997,0"
+A	04:56:35.229	"820,263,-193,-1997,0" received
+I	04:56:35.229	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:35.229	"
+" received
+I	04:56:35.324	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-35-39-34-2C-2D-34-35-34-33-30-2C-31-38-35-35-30-2C, "214594,-45430,18550,"
+A	04:56:35.324	"214594,-45430,18550," received
+I	04:56:35.324	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-38-31-39-30-2C-36-35-2C-37-35-2C-2D-31-30-34-2C-30-0D-0A
+A	04:56:35.324	"-8190,65,75,-104,0
+" received
+I	04:56:35.469	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-37-32-31-2C-38-34-30-37-30-2C-2D-33-34-35-31-30-2C, "214721,84070,-34510,"
+A	04:56:35.469	"214721,84070,-34510," received
+I	04:56:35.470	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-30-30-38-30-2C-31-39-33-2C-2D-31-31-36-2C-2D-31-35-31-38, "10080,193,-116,-1518"
+A	04:56:35.470	"10080,193,-116,-1518" received
+I	04:56:35.470	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:35.470	",0
+" received
+I	04:56:35.616	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-38-34-38-2C-2D-39-31-34-39-30-2C-33-36-37-35-30-2C, "214848,-91490,36750,"
+A	04:56:35.616	"214848,-91490,36750," received
+I	04:56:35.617	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-33-39-33-30-2C-31-36-37-2C-31-31-2C-2D-38-34-32-2C-30, "-13930,167,11,-842,0"
+A	04:56:35.617	"-13930,167,11,-842,0" received
+I	04:56:35.620	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:35.620	"
+" received
+I	04:56:35.713	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-34-39-37-35-2C-31-30-31-35-30-30-2C-2D-34-30-33-32-30, "214975,101500,-40320"
+A	04:56:35.713	"214975,101500,-40320" received
+I	04:56:35.714	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-31-32-33-39-30-2C-31-31-32-2C-31-36-2C-2D-37-35-32-2C-30, ",12390,112,16,-752,0"
+A	04:56:35.714	",12390,112,16,-752,0" received
+I	04:56:35.715	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:35.715	"
+" received
+I	04:56:35.861	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-31-30-32-2C-2D-39-34-38-35-30-2C-34-30-37-34-30-2C, "215102,-94850,40740,"
+A	04:56:35.861	"215102,-94850,40740," received
+I	04:56:35.862	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-35-30-35-30-2C-31-39-33-2C-2D-38-36-2C-2D-31-34-39-32, "-15050,193,-86,-1492"
+A	04:56:35.862	"-15050,193,-86,-1492" received
+I	04:56:35.864	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:35.864	",0
+" received
+I	04:56:35.957	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-32-32-39-2C-38-38-30-36-30-2C-2D-33-37-33-38-30-2C, "215229,88060,-37380,"
+A	04:56:35.957	"215229,88060,-37380," received
+I	04:56:35.958	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-30-35-37-30-2C-39-30-2C-35-35-2C-2D-31-31-33-2C-30-0D-0A
+A	04:56:35.958	"10570,90,55,-113,0
+" received
+I	04:56:36.103	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-33-35-36-2C-2D-37-34-31-33-30-2C-32-33-37-33-30-2C, "215356,-74130,23730,"
+A	04:56:36.103	"215356,-74130,23730," received
+I	04:56:36.104	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-39-35-39-30-2C-32-32-33-2C-2D-31-37-39-2C-2D-31-39-35-39, "-9590,223,-179,-1959"
+A	04:56:36.104	"-9590,223,-179,-1959" received
+I	04:56:36.104	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:36.104	",0
+" received
+I	04:56:36.252	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-34-38-33-2C-33-37-31-30-30-2C-2D-31-36-35-32-30-2C, "215483,37100,-16520,"
+A	04:56:36.252	"215483,37100,-16520," received
+I	04:56:36.252	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-30-38-30-2C-33-37-2C-35-38-2C-31-32-34-2C-30-0D-0A
+A	04:56:36.252	"3080,37,58,124,0
+" received
+I	04:56:36.349	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-36-31-30-2C-2D-31-36-39-34-30-2C-38-33-33-30-2C-2D, "215610,-16940,8330,-"
+A	04:56:36.349	"215610,-16940,8330,-" received
+I	04:56:36.350	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-35-35-30-2C-32-32-36-2C-2D-32-30-32-2C-2D-31-39-39-37-2C, "4550,226,-202,-1997,"
+A	04:56:36.350	"4550,226,-202,-1997," received
+I	04:56:36.350	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:36.350	"0
+" received
+I	04:56:36.494	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-37-33-37-2C-2D-32-34-34-33-30-2C-31-30-30-38-30-2C, "215737,-24430,10080,"
+A	04:56:36.494	"215737,-24430,10080," received
+I	04:56:36.495	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-35-33-32-30-2C-34-38-2C-34-36-2C-2D-35-38-2C-30-0D-0A
+A	04:56:36.495	"-5320,48,46,-58,0
+" received
+I	04:56:36.593	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-38-36-34-2C-34-33-35-34-30-2C-2D-31-38-35-35-30-2C, "215864,43540,-18550,"
+A	04:56:36.593	"215864,43540,-18550," received
+I	04:56:36.593	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 34-36-32-30-2C-32-31-39-2C-2D-31-34-37-2C-2D-31-36-36-36-2C, "4620,219,-147,-1666,"
+A	04:56:36.593	"4620,219,-147,-1666," received
+I	04:56:36.594	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:36.594	"0
+" received
+I	04:56:36.736	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-35-39-39-31-2C-2D-35-34-38-31-30-2C-32-32-33-33-30-2C, "215991,-54810,22330,"
+A	04:56:36.736	"215991,-54810,22330," received
+I	04:56:36.737	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-39-32-34-30-2C-31-31-33-2C-31-34-2C-2D-34-39-37-2C-30-0D
+A	04:56:36.737	"-9240,113,14,-497,0" received
+I	04:56:36.738	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:36.738	"
+" received
+I	04:56:36.886	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-31-31-38-2C-37-39-33-31-30-2C-2D-33-32-36-32-30-2C, "216118,79310,-32620,"
+A	04:56:36.886	"216118,79310,-32620," received
+I	04:56:36.890	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-34-35-30-2C-31-35-38-2C-2D-35-30-2C-2D-31-30-38-39-2C-30, "9450,158,-50,-1089,0"
+A	04:56:36.891	"9450,158,-50,-1089,0" received
+I	04:56:36.892	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:36.892	"
+" received
+I	04:56:36.983	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-32-34-35-2C-2D-37-39-30-33-30-2C-33-33-31-31-30-2C, "216245,-79030,33110,"
+A	04:56:36.983	"216245,-79030,33110," received
+I	04:56:36.983	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-32-38-31-30-2C-31-34-38-2C-2D-36-33-2C-2D-31-31-31-36, "-12810,148,-63,-1116"
+A	04:56:36.983	"-12810,148,-63,-1116" received
+I	04:56:36.983	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:36.983	",0
+" received
+I	04:56:37.128	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-33-37-32-2C-37-39-38-37-30-2C-2D-33-33-37-34-30-2C, "216372,79870,-33740,"
+A	04:56:37.128	"216372,79870,-33740," received
+I	04:56:37.129	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 39-35-32-30-2C-31-32-30-2C-32-2C-2D-35-30-38-2C-30-0D-0A
+A	04:56:37.129	"9520,120,2,-508,0
+" received
+I	04:56:37.224	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-34-39-39-2C-2D-36-35-31-30-30-2C-32-38-33-35-30-2C, "216499,-65100,28350,"
+A	04:56:37.224	"216499,-65100,28350," received
+I	04:56:37.224	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-31-32-37-30-2C-31-37-35-2C-2D-31-34-36-2C-2D-31-36-32, "-11270,175,-146,-162"
+A	04:56:37.224	"-11270,175,-146,-162" received
+I	04:56:37.225	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-2C-30-0D-0A
+A	04:56:37.225	"2,0
+" received
+I	04:56:37.373	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-36-32-36-2C-35-33-38-33-30-2C-2D-32-33-35-39-30-2C, "216626,53830,-23590,"
+A	04:56:37.373	"216626,53830,-23590," received
+I	04:56:37.373	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-37-34-30-2C-37-38-2C-32-33-2C-2D-31-35-34-2C-30-0D-0A
+A	04:56:37.373	"5740,78,23,-154,0
+" received
+I	04:56:37.518	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-37-35-33-2C-2D-33-37-37-33-30-2C-31-35-38-39-30-2C, "216753,-37730,15890,"
+A	04:56:37.518	"216753,-37730,15890," received
+I	04:56:37.519	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-35-31-38-30-2C-31-38-37-2C-2D-31-38-30-2C-2D-31-38-33-32, "-5180,187,-180,-1832"
+A	04:56:37.519	"-5180,187,-180,-1832" received
+I	04:56:37.519	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:37.519	",0
+" received
+I	04:56:37.615	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-36-38-38-30-2C-38-31-32-30-2C-2D-34-36-32-30-2C-2D-33, "216880,8120,-4620,-3"
+A	04:56:37.615	"216880,8120,-4620,-3" received
+I	04:56:37.615	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-30-2C-38-35-2C-34-33-2C-2D-31-30-34-2C-30-0D-0A
+A	04:56:37.615	"50,85,43,-104,0
+" received
+I	04:56:37.761	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-30-30-37-2C-31-30-31-35-30-2C-2D-33-32-32-30-2C-2D, "217007,10150,-3220,-"
+A	04:56:37.762	"217007,10150,-3220,-" received
+I	04:56:37.762	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 36-33-30-2C-31-37-35-2C-2D-31-36-31-2C-2D-31-36-39-39-2C-30, "630,175,-161,-1699,0"
+A	04:56:37.762	"630,175,-161,-1699,0" received
+I	04:56:37.763	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:37.763	"
+" received
+I	04:56:37.860	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-31-33-34-2C-2D-33-39-39-37-30-2C-31-35-35-34-30-2C, "217134,-39970,15540,"
+A	04:56:37.860	"217134,-39970,15540," received
+I	04:56:37.861	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-37-33-35-30-2C-39-36-2C-2D-31-2C-2D-34-32-39-2C-30-0D-0A
+A	04:56:37.861	"-7350,96,-1,-429,0
+" received
+I	04:56:38.006	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-32-36-31-2C-35-32-35-37-30-2C-2D-32-31-32-31-30-2C, "217261,52570,-21210,"
+A	04:56:38.006	"217261,52570,-21210," received
+I	04:56:38.007	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-37-34-30-2C-31-36-36-2C-2D-39-31-2C-2D-31-32-38-37-2C-30, "5740,166,-91,-1287,0"
+A	04:56:38.007	"5740,166,-91,-1287,0" received
+I	04:56:38.008	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:38.008	"
+" received
+I	04:56:38.151	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-33-38-38-2C-2D-35-37-38-32-30-2C-32-33-30-33-30-2C, "217388,-57820,23030,"
+A	04:56:38.151	"217388,-57820,23030," received
+I	04:56:38.152	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-39-37-33-30-2C-31-33-32-2C-2D-35-36-2C-2D-38-36-36-2C-30, "-9730,132,-56,-866,0"
+A	04:56:38.152	"-9730,132,-56,-866,0" received
+I	04:56:38.152	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:38.152	"
+" received
+I	04:56:38.248	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-35-31-35-2C-36-35-33-38-30-2C-2D-32-37-38-36-30-2C, "217515,65380,-27860,"
+A	04:56:38.248	"217515,65380,-27860," received
+I	04:56:38.248	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 37-35-36-30-2C-31-33-38-2C-2D-34-30-2C-2D-37-39-34-2C-30-0D
+A	04:56:38.248	"7560,138,-40,-794,0" received
+I	04:56:38.248	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:38.248	"
+" received
+I	04:56:38.394	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-36-34-32-2C-2D-36-30-36-32-30-2C-32-35-32-30-30-2C, "217642,-60620,25200,"
+A	04:56:38.394	"217642,-60620,25200," received
+I	04:56:38.394	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-31-30-32-32-30-2C-31-36-34-2C-2D-31-30-39-2C-2D-31-33-33, "-10220,164,-109,-133"
+A	04:56:38.394	"-10220,164,-109,-133" received
+I	04:56:38.395	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-2C-30-0D-0A
+A	04:56:38.395	"0,0
+" received
+I	04:56:38.491	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-37-36-39-2C-35-38-31-37-30-2C-2D-32-34-33-36-30-2C, "217769,58170,-24360,"
+A	04:56:38.491	"217769,58170,-24360," received
+I	04:56:38.495	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 36-34-34-30-2C-39-33-2C-37-2C-2D-33-39-37-2C-30-0D-0A
+A	04:56:38.495	"6440,93,7,-397,0
+" received
+I	04:56:38.639	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-37-38-39-36-2C-2D-33-34-32-33-30-2C-31-34-39-31-30-2C, "217896,-34230,14910,"
+A	04:56:38.639	"217896,-34230,14910," received
+I	04:56:38.639	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-36-35-31-30-2C-31-37-39-2C-2D-31-33-35-2C-2D-31-36-30-37, "-6510,179,-135,-1607"
+A	04:56:38.639	"-6510,179,-135,-1607" received
+I	04:56:38.640	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:38.640	",0
+" received
+I	04:56:38.784	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-30-32-33-2C-32-33-38-37-30-2C-2D-31-30-35-30-30-2C, "218023,23870,-10500,"
+A	04:56:38.784	"218023,23870,-10500," received
+I	04:56:38.785	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-33-33-30-2C-37-38-2C-38-2C-2D-32-35-37-2C-30-0D-0A
+A	04:56:38.785	"1330,78,8,-257,0
+" received
+I	04:56:38.881	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-31-35-30-2C-2D-31-30-32-39-30-2C-34-32-30-30-2C-2D, "218150,-10290,4200,-"
+A	04:56:38.881	"218150,-10290,4200,-" received
+I	04:56:38.881	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 31-35-34-30-2C-31-37-36-2C-2D-31-37-32-2C-2D-31-36-34-34-2C, "1540,176,-172,-1644,"
+A	04:56:38.881	"1540,176,-172,-1644," received
+I	04:56:38.882	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:38.882	"0
+" received
+I	04:56:39.027	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-32-37-37-2C-2D-31-35-32-36-30-2C-35-38-38-30-2C-2D, "218277,-15260,5880,-"
+A	04:56:39.027	"218277,-15260,5880,-" received
+I	04:56:39.028	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-39-32-30-2C-38-35-2C-2D-37-2C-2D-34-30-34-2C-30-0D-0A
+A	04:56:39.028	"3920,85,-7,-404,0
+" received
+I	04:56:39.124	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-34-30-34-2C-33-30-33-31-30-2C-2D-31-32-33-39-30-2C, "218404,30310,-12390,"
+A	04:56:39.124	"218404,30310,-12390," received
+I	04:56:39.124	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-37-33-30-2C-31-38-30-2C-2D-31-30-37-2C-2D-31-33-36-39-2C, "2730,180,-107,-1369,"
+A	04:56:39.124	"2730,180,-107,-1369," received
+I	04:56:39.125	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:39.125	"0
+" received
+I	04:56:39.272	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-35-33-31-2C-2D-34-34-34-35-30-2C-31-37-37-38-30-2C, "218531,-44450,17780,"
+A	04:56:39.272	"218531,-44450,17780," received
+I	04:56:39.274	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-37-39-31-30-2C-31-31-34-2C-2D-33-35-2C-2D-37-34-30-2C-30, "-7910,114,-35,-740,0"
+A	04:56:39.274	"-7910,114,-35,-740,0" received
+I	04:56:39.274	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:39.274	"
+" received
+I	04:56:39.419	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-36-35-38-2C-35-31-33-31-30-2C-2D-32-30-37-32-30-2C, "218658,51310,-20720,"
+A	04:56:39.419	"218658,51310,-20720," received
+I	04:56:39.420	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-33-32-30-2C-31-32-33-2C-2D-37-35-2C-2D-31-30-30-34-2C-30, "5320,123,-75,-1004,0"
+A	04:56:39.420	"5320,123,-75,-1004,0" received
+I	04:56:39.422	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0D-0A
+A	04:56:39.422	"
+" received
+I	04:56:39.515	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-37-38-35-2C-2D-35-30-36-38-30-2C-32-31-30-37-30-2C, "218785,-50680,21070,"
+A	04:56:39.515	"218785,-50680,21070," received
+I	04:56:39.515	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-38-38-32-30-2C-31-35-35-2C-2D-37-38-2C-2D-31-31-30-34-2C, "-8820,155,-78,-1104,"
+A	04:56:39.515	"-8820,155,-78,-1104," received
+I	04:56:39.517	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 30-0D-0A
+A	04:56:39.517	"0
+" received
+I	04:56:39.662	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-38-39-31-32-2C-35-30-31-39-30-2C-2D-32-30-39-33-30-2C, "218912,50190,-20930,"
+A	04:56:39.662	"218912,50190,-20930," received
+I	04:56:39.663	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 35-33-39-30-2C-31-30-39-2C-2D-31-32-2C-2D-36-30-36-2C-30-0D
+A	04:56:39.663	"5390,109,-12,-606,0" received
+I	04:56:39.663	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 0A
+A	04:56:39.663	"
+" received
+I	04:56:39.759	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-39-30-33-39-2C-2D-34-31-37-39-30-2C-31-37-35-30-30-2C, "219039,-41790,17500,"
+A	04:56:39.759	"219039,-41790,17500," received
+I	04:56:39.760	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2D-37-38-34-30-2C-31-36-35-2C-2D-31-33-37-2C-2D-31-34-33-30, "-7840,165,-137,-1430"
+A	04:56:39.760	"-7840,165,-137,-1430" received
+I	04:56:39.762	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 2C-30-0D-0A
+A	04:56:39.762	",0
+" received
+I	04:56:39.904	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 32-31-39-31-36-36-2C-33-33-38-38-30-2C-2D-31-35-31-39-30-2C, "219166,33880,-15190,"
+A	04:56:39.904	"219166,33880,-15190," received
+I	04:56:39.906	Notification received from 6e400003-b5a3-f393-e0a9-e50e24dcca9e, value: (0x) 33-30-31-30-2C-39-37-2C-2D-31-38-2C-2D-34-31-30-2C-30-0D-0A
+A	04:56:39.906	"3010,97,-18,-410,0
+" received
+V	04:56:39.921	Disconnecting...
+D	04:56:39.921	gatt.disconnect()
+D	04:56:39.928	[Callback] Connection state changed with status: 0 and new state: DISCONNECTED (0)
+I	04:56:39.928	Disconnected
+D	04:56:39.929	gatt.close()
+D	04:56:39.931	wait(200)
