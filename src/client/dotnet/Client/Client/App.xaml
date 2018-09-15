@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SensorKitClient.App">
+	<Application.Resources>
+
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesome">
+                <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free" />
+            </OnPlatform>
+            <Color x:Key="MainBackgroundColor">#F66833</Color>
+            <Color x:Key="MainColor">DeepSkyBlue</Color>
+            <Color x:Key="SecondaryColor">DeepPink</Color>
+        </ResourceDictionary>
+
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SensorKitClient"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             x:Class="SensorKitClient.MainPage">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <microcharts:ChartView  x:Name="chartView" Chart="{Binding CurrentChart, Mode=OneWay}"/>
+        <Image Source="diving.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        <Grid  VerticalOptions="Start" x:Name="scorePanel" IsVisible="False" Margin="3">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="diving.png" HeightRequest="42"/>
+                <Label x:Name="scoreLabel" FontSize="28" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding Model.Score, Mode=OneWay}"/>
+            </StackLayout>
+        </Grid>
+
+        <Grid  VerticalOptions="Center" x:Name="statsPanel" IsVisible="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,5" HorizontalOptions="Center">
+                <StackLayout>
+                    <Label FontFamily="{StaticResource FontAwesome}" Text="&#xf434;" FontSize="16" TextColor="Orange" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label x:Name="t1SprintDribbles" FontSize="28" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding Model.Team1SprintDribbles, Mode=OneWay, StringFormat='{0:F0}'}"/>
+                    <Label Text="dribbles" FontSize="Small" TextColor="DarkGray"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label FontFamily="{StaticResource FontAwesome}" Text="&#xf4db;" FontSize="16" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label x:Name="team1Ft" FontSize="28" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding Model.Team1Ft, Mode=OneWay, StringFormat='{0:F0}'}"/>
+                    <Label Text="ft" FontSize="Small" TextColor="DarkGray"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,5" Grid.Column="1" HorizontalOptions="Center">
+                <StackLayout>
+                    <Label FontFamily="{StaticResource FontAwesome}" Text="&#xf434;" FontSize="16" TextColor="Orange" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label  x:Name="t2SprintDribbles" FontSize="28"  HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding Model.Team2SprintDribbles, Mode=OneWay, StringFormat='{0:F0}'}" />
+                    <Label Text="dribbles" FontSize="Small" TextColor="DarkGray" VerticalOptions="Start"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label FontFamily="{StaticResource FontAwesome}" Text="&#xf4db;" FontSize="16" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label x:Name="team2Ft" FontSize="28" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding Model.Team2Ft, Mode=OneWay, StringFormat='{0:F0}'}"/>
+                    <Label Text="ft" FontSize="Small" TextColor="DarkGray" VerticalOptions="Start"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+        
+
+        <oxy:PlotView Grid.Row="1" IsVisible="False" x:Name="chartHistory" InputTransparent="True"  />
+        <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Text="SCANNING SENSORS..." HorizontalTextAlignment="Center" TextColor="Red" FontSize="Large" Opacity="0.6" x:Name="statusText" />
+
+        <StackLayout x:Name="waitPanel" HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator x:Name="waitIndicator" Color="LightGray" IsRunning="true" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="120" WidthRequest="120" />
+            <Button x:Name="demoButton" BackgroundColor="DeepSkyBlue" Clicked="Demo" Text="START DEMO" HorizontalOptions="Center" VerticalOptions="End" TextColor="White" />
+        </StackLayout>
+        
+
+        <Button FontFamily="{StaticResource FontAwesome}" FontSize="30" x:Name="startButton" IsVisible="False" BackgroundColor="LimeGreen" Clicked="Start" Text="&#xf04b;" HorizontalOptions="Start" VerticalOptions="Start" TextColor="White" BorderRadius="40" HeightRequest="80" WidthRequest="80" BorderWidth="0" BorderColor="Transparent"/>
+
+        <Button FontFamily="{StaticResource FontAwesome}" FontSize="30" x:Name="stopButton" IsVisible="False" BackgroundColor="DeepPink" Clicked="Stop" Text="&#xf04d;" HorizontalOptions="Start" VerticalOptions="Start" TextColor="White" BorderRadius="40" HeightRequest="80" WidthRequest="80" BorderWidth="0" BorderColor="Transparent"/>
+
+
+        <Label Margin="3" FontFamily="{StaticResource FontAwesome}" Text="&#xf013;" FontSize="32" TextColor="LightGray" HorizontalOptions="End" VerticalOptions="Start">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Settings_Clicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+        
+
+
+    </Grid>
+
+</ContentPage>

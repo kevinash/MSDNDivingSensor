@@ -136,11 +136,11 @@ dat2$V4 <- gsub(" received", "", dat2$V3)  #remove Received
 df <- ReadNewFormatFile(dat2, debug_print = debug_print)
 
 # 3.values conversion 
-#   wx, wy, wz *  0.001 * PI / 180.0 = radians/second (ang. Velocity)
+#   wx, wy, wz *  0.001 * degrees/second (ang. Velocity)
 #   ax, at, az = * 0.001 * 9.81 = m/s^2 (acceleration)
-df$wx <- df$wx *  0.001 #ignore radians for now # * pi / 180.0
-df$wy <- df$wy *  0.001 #ignore radians for now # * pi / 180.0
-df$wz <- df$wz *  0.001 #ignore radians for now # * pi / 180.0
+df$wx <- df$wx *  0.001 # convert to degrees per second
+df$wy <- df$wy *  0.001 # convert to degrees per second
+df$wz <- df$wz *  0.001 # convert to degrees per second
 df$ax <- df$ax * 0.001 * 9.81
 df$ay <- df$ay * 0.001 * 9.81
 df$az <- df$az * 0.001 * 9.81
@@ -163,13 +163,13 @@ d<-data.frame("Start"=as.numeric(df$t_fraction[1:length(df$t_fraction)-1]), #ind
               "EndTime" = as.POSIXct(strptime(paste(dt,df$t[2:length(df$t)]),"%Y-%m-%d %H:%M:%OS")),
               stringsAsFactors=FALSE) 
 
-revFirstMin <- which.min(rev(d$Wz))                 # first min from the end 
-posLastMin <- length(df$wz) - revFirstMin +1         # position of the first min from the end = take off point
+revFirstMin <- which.min(rev(d$Wz))            # first min from the end 
+posLastMin <- length(df$wz) - revFirstMin +1   # position of the first min from the end = take off point
 posTakeOff <- posLastMin
 
-meanWz <- mean(d$Wz) #SREDNEE ZNACHENUE 
-avgLinearDeviationWz <- mean(d$Wz - meanWz) #SREDNEE LINEINOE OTKLONENIE
-threshold <- (min(d$Wz - meanWz) + max(d$Wz - meanWz))/10 # 10% from range of the LINEINOE OTKLONENIE
+meanWz <- mean(d$Wz) #mean  
+avgLinearDeviationWz <- mean(d$Wz - meanWz) #mean deviation
+threshold <- (min(d$Wz - meanWz) + max(d$Wz - meanWz))/10 # 10% from range of the mean deviation
 
 posStart <- which.max(abs(d$Wz - meanWz) > abs(threshold)) -2
 

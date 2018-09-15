@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SensorKitClient.SettingsPage">
+    <TableView>
+        <TableView.Root>
+            <TableRoot>
+                <TableSection Title="Settings">
+                    <EntryCell x:Name="clientAPI" Label="API" Text="{Binding ClientAPI, Mode=TwoWay}"/>
+                    <EntryCell x:Name="sensorFilter" Label="Sensor filter" Text="{Binding SensorFilter, Mode=TwoWay}"/>
+                </TableSection>
+            </TableRoot>
+        </TableView.Root>
+    </TableView>
+</ContentPage>
