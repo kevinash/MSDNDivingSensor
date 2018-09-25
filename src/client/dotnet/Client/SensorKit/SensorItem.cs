@@ -109,6 +109,8 @@ namespace SensorKitSDK
 
         public double angle { get; set; }
 
+        public double hurdles { get; set; }
+
     }
    
 }

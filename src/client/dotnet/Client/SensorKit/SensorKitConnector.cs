@@ -404,6 +404,24 @@ namespace SensorKitSDK
                         }
                     }
 
+                    if (item?.divedata != null)
+                    {
+                        if (item.divedata.angle != 0)
+                        {
+                            var reading = new SensorItem
+                            {
+                                offsetMs = item.divedata.t,
+                                itemType = SensorItemTypes.Diving,
+                                duration = item.divedata.dt,
+                                angle = item.divedata.angle,
+                                wy = item.divedata.w,
+                                force = item.divedata.g,
+                                hurdles = item.divedata.hurdles
+                            };
+                            Data.Append(reading);
+                        }
+                    }
+
 
                     if (item?.rawdata != null)
                     {

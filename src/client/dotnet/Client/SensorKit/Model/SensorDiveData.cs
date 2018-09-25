@@ -10,12 +10,12 @@ namespace SensorKitSDK
 
     public class SensorDiveData
     {
-        public long t { get; set; }
-        public double dt { get; set; }
-        public double count { get; set; } // hurdle count
-        public double g { get; set; }
-        public double w { get; set; } // angular velocity
-        public double angle { get; set; } // angle
+        public long t { get; set; } // timestamp
+        public double dt { get; set; } // duration
+        public double hurdles { get; set; } // hurdle count
+        public double w { get; set; } // angular velocity, dps
+        public double angle { get; set; } // max flexion angle, deg
+        public double g { get; set; } // acceleration, m/s^2
     }
 
 }

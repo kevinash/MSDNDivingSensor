@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\client"
+    "\\src\\client",
+    "\\src\\client\\dotnet",
+    "\\src\\client\\dotnet\\Client"
   ],
-  "SelectedNode": "\\src\\client\\Client.sln",
+  "SelectedNode": "\\src\\client\\dotnet\\Client.sln",
   "PreviewInSolutionExplorer": false
 }

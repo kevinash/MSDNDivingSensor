@@ -1,9 +1,10 @@
 #
 # " 1. Read the file"
-# " 2. Parse the file, get df with 10 columns"
-# " 3. Apply calculations for each w & a columns"
-# " 4. Get charts for w & a"
-
+# " 2. Parse the file, get data"
+# " 3. Apply calculations for gyro & accelerometer columns"
+# " 4. Get initial charts for gyro (w) & accelerometer (a)"
+# " 5. Calculate flex and show charts
+#
 library(ggplot2)
 library (dplyr)
 
@@ -95,14 +96,33 @@ ReadNewFormatFile <- function(df, debug_print = 0) {
   return(dt_result)
 }
 
-PlotSingleChart <- function(gf,chart_title, mainColor, fileName, sidetext,newPlot=FALSE){
-
-  if (newPlot) {
-    plot(1:length(gf),gf,type="l",ylab="",xlab="",col=mainColor, lwd = 2 ) 
-    abline(h = 0, v = 500 * c(1:9), lty = 2, lwd = .2, col = "gray70")
-  }else{
+PlotSingleChart <- function(gf,chart_title, mainColor, fileName, sidetext,
+                            newPlot=FALSE, show_smooth = FALSE, timeAxis=NULL){
+  g_range <- range(floor(min(gf, na.rm=T)), floor(max(gf,na.rm=T))+ 1)
+  
+  if (newPlot && !show_smooth) {
+    if(missing(timeAxis) | is.null(timeAxis)) {
+    plot(1:length(gf),gf,type="l",ylab="",xlab="",col=mainColor, lwd = 2 , ylim=g_range)
+    } else {
+      plot(timeAxis,gf,type="l",ylab="",xlab="",col=mainColor, lwd = 2 , ylim=g_range)
+    }
+    abline(h = 0, v = 100 * c(1:floor(length(gf) /100)), lty = 2, lwd = .2, col = "gray70")
+  }else if (newPlot && show_smooth) {
+    points =gf
+    if(missing(timeAxis) | is.null(timeAxis)) {
+      plot(points, ylim=c(min(gf, na.rm=T),max(gf, na.rm=T)),
+           pch = 20, col = mainColor, cex = 1.5)
+        lines(spline(1:length(gf) ,  points ), col=mainColor, lwd = 2)
+    } else {
+      plot(timeAxis,points, ylim=c(min(gf, na.rm=T),max(gf, na.rm=T)), 
+           pch = 20, col = mainColor, cex = 1.5)
+      lines(spline(timeAxis,  points ), col=mainColor, lwd = 2)
+    }
+    abline(h = 0, v = 100 * c(1:floor(length(gf) /100)), lty = 2, lwd = .2, col = "gray70")
+  }else {
     lines(1:length(gf),gf,type="l",col=mainColor,lwd=2)
   }
+  
   if (chart_title !="") {title(paste(chart_title,":",fileName), cex.main = 1,   col.main= "blue")}
   mtext(sidetext,side=4,col="blue",cex=1)
   
@@ -116,98 +136,212 @@ PlotInitialCharts <- function(df, fileName){
   ###############
   par(mfcol = c(3,2),oma = c(2,2,0,0) + 0.1,mar = c(1, 1, 1, 1) + 0.5)
   
-  PlotSingleChart(df$wx,"Angular Velocity ","red", fileName,"Wx",TRUE)
-  PlotSingleChart(df$wy,"","green", fileName,"Wy",TRUE)
-  PlotSingleChart(df$wz,"","blue", fileName,"Wz",TRUE)
+  #get column number for TimeSec 
+  nTimeAxis <- which( colnames(df)=="t_sec" ) 
   
-  PlotSingleChart(df$ax,"Accelleration ","red", fileName,"Ax",TRUE)
-  PlotSingleChart(df$ay,"","green", fileName,"Ay",TRUE)
-  PlotSingleChart(df$az,"","blue", fileName,"Az",TRUE)
+  PlotSingleChart(df$wx,"Angular Velocity ","red", fileName,"Wx",TRUE,FALSE,df[,nTimeAxis])
+  PlotSingleChart(df$wy,"","green", fileName,"Wy",TRUE,FALSE,df[,nTimeAxis])
+  PlotSingleChart(df$wz,"","blue", fileName,"Wz",TRUE,FALSE,df[,nTimeAxis])
+  
+  PlotSingleChart(df$ax,"Accelleration ","red", fileName,"Ax",TRUE,FALSE,df[,nTimeAxis])
+  PlotSingleChart(df$ay,"","green", fileName,"Ay",TRUE,FALSE,df[,nTimeAxis])
+  PlotSingleChart(df$az,"","blue", fileName,"Az",TRUE,FALSE,df[,nTimeAxis])
+
+  par(mfcol = c(1,1),oma = c(2,2,0,0) + 0.1,mar = c(1, 1, 1, 1) + 0.5)
+  p1<-ggplot() +
+    geom_line(data = df, aes(x = df[,nTimeAxis], y = df$wx, colour = "Wx"), size = 1.4) + 
+    geom_line(data = df, aes(x = df[,nTimeAxis], y = df$wy, color = "Wy"), size = 1.4) + 
+    geom_line(data = df, aes(x = df[,nTimeAxis], y = df$wz, color = "Wz"), size = 1.4) + 
+    scale_colour_manual("", 
+                        breaks = c("Wx", "Wy", "Wz"),
+                        values = c("red", "green", "blue")) +
+    xlab("\nTime Fraction") + 
+    ylab("Angular Velocity \n") + 
+    ggtitle("Angular Velocity",paste("File: [",fileName,"]", sep="")) + 
+    theme_bw() +
+    theme(axis.text.x = element_text(size = 10, color = "black")) + 
+    theme(plot.title = element_text(lineheight = .8, 
+                                    face = "bold", colour = "black", 
+                                    hjust = 0.5, vjust = 2, size = 10)) 
+    #theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+  p1
 }
 
-CalculateSpringBoardDivingValues <- function(sourceFile, debug_print = 0){
-library(ggplot2)
-library (dplyr)
+SlidingAvg<-function(y,lag,threshold,influence){
+  
+  filteredY <- y[0:lag]
+  avgFilter <- NULL
+  stdFilter <- NULL
+  avgFilter[lag] <- mean(y[0:lag])
+  stdFilter[lag] <- sd(y[0:lag])
+  
+  #1-st sliding average
+  for (i in (lag+1):length(y)){
+    if (abs(y[i]-avgFilter[i-1]) > threshold*stdFilter[i-1]) {
+      filteredY[i] <- influence*y[i]+(1-influence)*filteredY[i-1]
+    } else {
+      filteredY[i] <- y[i]
+    }
+    avgFilter[i] <- mean(filteredY[(i-lag):i])
+    stdFilter[i] <- sd(filteredY[(i-lag):i])
+  }
+  return(list("avgFilter"=avgFilter,"stdFilter"=stdFilter))
+}
 
+CalculateSpringBoardDivingValues <- function(sourceFile, lag =10, threshold = 2, influence = 1,
+                                             debug_print = 0, 
+                                             save_outputfiles = 0){
+  
 #SensorKit data
-dat <- read.table(sourceFile, header = FALSE, skip=43,sep="\t",stringsAsFactors=FALSE)
+dat <- read.table(sourceFile, header = FALSE, skip=50,sep="\t",stringsAsFactors=FALSE)
 dat2 <- dat[dat$V1=="A", ]                 #Get only A rows 
 dat2$V4 <- gsub(" received", "", dat2$V3)  #remove Received
 df <- ReadNewFormatFile(dat2, debug_print = debug_print)
 
 # 3.values conversion 
-#   wx, wy, wz *  0.001 * degrees/second (ang. Velocity)
+#   wx, wy, wz *  0.001 * PI / 180.0 = radians/second (ang. Velocity)
 #   ax, at, az = * 0.001 * 9.81 = m/s^2 (acceleration)
-df$wx <- df$wx *  0.001 # convert to degrees per second
-df$wy <- df$wy *  0.001 # convert to degrees per second
-df$wz <- df$wz *  0.001 # convert to degrees per second
+df$wx <- df$wx *  0.001 #ignore radians for now # * pi / 180.0
+df$wy <- df$wy *  0.001 #ignore radians for now # * pi / 180.0
+df$wz <- df$wz *  0.001 #ignore radians for now # * pi / 180.0
 df$ax <- df$ax * 0.001 * 9.81
 df$ay <- df$ay * 0.001 * 9.81
 df$az <- df$az * 0.001 * 9.81
+df$t_sec <- (df$t_fraction - df$t_fraction[1]) * 0.001 #get time in seconds from milliseconds, relative to the beginning of file
 
 PlotInitialCharts (df, kitSensorFile)
 
+# Find axis with the biggest values for Angular Velocity
+maxWx <- max(abs(df$wx))
+maxWy <- max(abs(df$wy))
+maxWz <- max(abs(df$wz))
+
+flexCol <- which( colnames(df)=="t_fraction" )       # values, we are interested in, are in columns after [t_fraction] 
+flexCol <- flexCol + which.max(c(maxWx,maxWy,maxWz)) # take columns with biggest values
+print (paste("We are using Max values of Angular Velocity by axis ",colnames(df[flexCol]),sep=""))
 #========================================
 # Calculating Flex with Angular Velocity
 #========================================
 #
+# Get Date of the file
+pos<-regexpr(pattern ='2018',basename(sourceFile))[[1]]
+dt <-substr(basename(sourceFile),pos,pos+9) 
+
+if (strptime(dt,"%Y-%m-%d")%>% is.na()) {             # tryFormats = c("%Y-%m-%d", "%Y/%m/%d","%Y%m%d")
+  dt <-strptime(dt,"%Y%m%d")
+} else {
+  dt<-strptime(dt,"%Y-%m-%d")}
+
 # Take only needed columns
-# Use values [1:length(df)-1] as a Start 
-# and values [2:length(df)] as End point of interval to calculate time delta
-#
-dt <- "2018-07-23" # DateFromFile - date of the data taken
-d<-data.frame("Start"=as.numeric(df$t_fraction[1:length(df$t_fraction)-1]), #index 1
-              "End"=as.numeric(df$t_fraction[2:length(df$t_fraction)]),     #index start + 1
-              "Wz"=df$wz[1:length(df$t_fraction)-1], 
-              "StartTime" = as.POSIXct(strptime(paste(dt,df$t[1:length(df$t)-1]),"%Y-%m-%d %H:%M:%OS")),
-              "EndTime" = as.POSIXct(strptime(paste(dt,df$t[2:length(df$t)]),"%Y-%m-%d %H:%M:%OS")),
+# Use t_sec values [1:length(df)-1] as a Start time
+# and values [2:length(df)] as End time of interval to calculate time delta
+
+d<-data.frame("Start"=as.numeric(df$t_sec[1:length(df$t_sec)-1]), # index 1
+              "End"=as.numeric(df$t_sec[2:length(df$t_sec)]),     # index start + 1
+              "FlexValues"=df[1:length(df$t_fraction)-1, flexCol], # angular velocity around vertical axis
+              Ax =  df[1:length(df$ax)-1, 7],
+              Ay =  df[1:length(df$ay)-1, 8],
+              Az =  df[1:length(df$az)-1, 9],
               stringsAsFactors=FALSE) 
 
-revFirstMin <- which.min(rev(d$Wz))            # first min from the end 
-posLastMin <- length(df$wz) - revFirstMin +1   # position of the first min from the end = take off point
-posTakeOff <- posLastMin
 
-meanWz <- mean(d$Wz) #mean  
-avgLinearDeviationWz <- mean(d$Wz - meanWz) #mean deviation
-threshold <- (min(d$Wz - meanWz) + max(d$Wz - meanWz))/10 # 10% from range of the mean deviation
+# d$FlexValues  # Angular velocity we use to calculate max Flex 
+# d$Az # linear accelleration along Z - vertical axis
 
-posStart <- which.max(abs(d$Wz - meanWz) > abs(threshold)) -2
+#Smooth lines using moving average
+aSm <- SlidingAvg(d$Az,lag,threshold,influence)
+aSmMean <- abs(mean(aSm$avgFilter,na.rm=T))
+minSmooth <- min(abs(abs(aSm$avgFilter) - aSmMean), na.rm = T) 
+maxSmooth <-max(abs(abs(aSm$avgFilter) - aSmMean), na.rm = T)
 
-# Calculate delta t by t_fraction
-d$duration <-d$End -d$Start
-d$theta <- d$Wz * d$duration * 0.001 # need delta time (duration) in seconds from milliseconds
+deltaSmooth <- (maxSmooth - minSmooth) /5
 
-# Cumulative values for the Angle
+# Looking for meaningful values, not just straight line 
+st<- which(deltaSmooth < abs(abs(aSm$avgFilter) - aSmMean) & d$Start > 1)
+posStart<-min(st) #d$Start[posStart] in seconds
+posEnd<-max(st)   #d$Start[posEnd] in seconds
+print (paste("Our Segment: start=",d$Start[posStart]," end=",d$Start[posEnd],sep=""))
+
+par(mfcol = c(2,1),oma = c(2,2,0,0) + 0.1,mar = c(1,1,1,1) + 0.5)
+#PlotSingleChart(d$Az,"Acceleration by Z(Az) ","blue", kitSensorFile,"Az",TRUE,FALSE,d$Start)
+
+# The same charts for Angular Velocity
+wSm <- SlidingAvg(d$FlexValues,lag,threshold,influence)
+
+#Interested only in [posStart:posEnd]
+# When displacement is at MAX, velocity passes 0 point 
+revFirstMin <- which.min(rev(wSm$avgFilter[posStart:posEnd])) 
+# after been max negative
+posLastMin <- posEnd - revFirstMin +1                         
+#Next index when Angular Velocity goes 
+# through 0 is our starting integration point
+nextZero <- min(which(floor(wSm$avgFilter[posLastMin:posEnd])>0)) 
+# 0 position relative to Last Minimum 
+nextZero <- nextZero + posLastMin -1                          
+# Max position after 0 position
+nextMaxAfterZero <- which.max(wSm$avgFilter[nextZero:posEnd])        
+nextMaxAfterZero <- nextMaxAfterZero + nextZero -1
+  
+posMaxFlex <- nextZero
+posHorizontal <-nextMaxAfterZero
+
+PlotSingleChart(wSm$avgFilter[posStart:posEnd],"Angular Velocity Smooth OUR Segment ","cyan4", kitSensorFile,"Wx smooth deg.",TRUE, FALSE, d$Start[posStart:posEnd])
+abline(v =  c(1:round(length(wSm$avgFilter))), lty = 2, lwd = .2, col = "gray70")
+points(d$Start[posLastMin], wSm$avgFilter[posLastMin], col="cyan", pch=19, cex=1.25)
+points(d$Start[c(posMaxFlex,posHorizontal)], wSm$avgFilter[c(posMaxFlex,posHorizontal)], col="red", pch=19, cex=1.25)
+
+d$omega <-wSm$avgFilter
+
+# Calculate delta t 
+d$duration <-d$End -d$Start     # need delta time (duration) in seconds 
+d$theta <- d$omega * d$duration # calculate change in angle over time
+
+# Integrate Cumulative values for the Angle
 d$thetaCum <-0.                      #start with 0 for all Cumulative Values of Angle
-d$thetaCum[posStart:posTakeOff] <- cumsum(d$theta[posStart:posTakeOff])
+d$thetaCum[posMaxFlex:posHorizontal] <- cumsum(d$theta[posMaxFlex:posHorizontal])
 
-par(mfcol = c(3,1),oma = c(2,2,0,0) + 0.1,mar = c(1,1,1,1) + 0.5)
-PlotSingleChart(df$wz,"Gyro Z coordinate ","cyan4", kitSensorFile,"Wz",TRUE)
-abline(h = meanWz, lty = 2, lwd = .2, col = "blue")
-abline(h = meanWz+threshold, lty = 2, lwd = .2, col = "red")
-abline(h = meanWz-threshold, lty = 2, lwd = .2, col = "red")
-PlotSingleChart(d$Wz[posStart:posTakeOff],"Subset from hurdle landing to takeoff","cyan4", kitSensorFile,"Omega z",TRUE) 
-PlotSingleChart(d$thetaCum[posStart:posTakeOff],"Flex Angle (deg.) ","cyan4", kitSensorFile,"Theta",TRUE) 
+d$theta2Cum <-0.                      #start with 0 for all Cumulative Values of Angle
+d$theta2Cum[posLastMin:nextZero] <- cumsum(d$theta[posLastMin:nextZero])
+d$theta3Cum <-0.
+d$theta3Cum[posLastMin:posHorizontal] <- cumsum(d$theta[posLastMin:posHorizontal])
 
-
-writeLines (paste (
-                    "Index of Hurdle landing time (Start)                = ", posStart,"\n",
-                    "Index of Take Off time       (End)                  = ", posTakeOff,"\n",
-                    "Maximum downward flexion of the board               = ", abs(min(d$thetaCum))," deg.","\n",
-                    "Take Off time                                       = ",d$StartTime[posTakeOff], "\n",
-                    "Hurdle landing time                                 = ",d$StartTime[posStart], "\n",
-                    "Board contact time (from hurdle landing to takeoff) = ",
-                    round(difftime(d$StartTime[posTakeOff],d$StartTime[posStart]),digits = 4)," secs", sep="" ))
-
+if (save_outputfiles !=0 ){
+  outputFile <- sub('\\.txt', '', sourceFile) 
+  outputFileOrig <- paste(outputFile,"_Origin.csv", sep="")
+  outputFileFlex <- paste(outputFile,"_Flex.csv", sep="")
+  write.csv(df, file=outputFileOrig, row.names=FALSE, quote=TRUE)
+  write.csv(d, file=outputFileFlex, row.names=FALSE, quote=TRUE)
 }
 
-#### Diving Board immitation ####
+print (paste("We found: posLastMin=",d$Start[posLastMin],", posMaxFlex=",d$Start[posMaxFlex],", posHorizontal=",d$Start[posHorizontal],sep=""))
+
+PlotSingleChart(2* d$thetaCum[posMaxFlex:posHorizontal],"Integrated Flex Angle (deg.) ","cyan4", kitSensorFile,"Theta",TRUE, TRUE, d$Start[posMaxFlex:posHorizontal]) 
+
+
+timeTakeOff <- d$Start[posHorizontal] 
+timeStart <- d$Start[posLastMin]   
+
+writeLines (paste (
+            "Hurdle landing time (Start)                         = ", timeStart,"\n",
+            "Take Off time (End)                                 = ", timeTakeOff,"\n",
+            "Board contact time (from hurdle landing to takeoff) = ",
+            round(difftime(
+            as.POSIXct(paste(dt,df$t[posHorizontal],sep=" ")),
+            as.POSIXct(paste(dt,df$t[posLastMin],sep=" "))),digits = 4)," secs \n",
+            "Maximum downward flexion of the board               = ", 
+            round(max(abs(d$theta2Cum[posLastMin:nextZero])),digits=4)," deg.",
+            " secs", sep="" ))
+}
+
+
+
 kitSensorDir <- "./data/"
-kitSensorFile <- "Log_2018-07-23_14_34_54_static_3_bounce.txt"
+kitSensorFile <- "82_Log2018-09-19_15_06_33.txt"
 sourceFile <- paste(kitSensorDir, kitSensorFile, sep="")
+lag       <- 5
+threshold <- 3
+influence <- 0.5
 
-CalculateSpringBoardDivingValues (sourceFile,0)
-
-
+CalculateSpringBoardDivingValues (sourceFile,lag, threshold, influence,1)
 
 
